@@ -1,4 +1,6 @@
-@inherits UmbracoViewPage<BlockListItemTextWithImages>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    // var block = new Tex(Model);
+    var content = Model.Content;
+    var block = new TextWithImages(content as BlockListItemTextWithImages);
 }

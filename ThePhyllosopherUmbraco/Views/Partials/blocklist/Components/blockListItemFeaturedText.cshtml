@@ -1,6 +1,8 @@
-@inherits UmbracoViewPage<BlockListItemFeaturedText>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new FeaturedText(Model);
+    var content = Model.Content;
+    var block = new FeaturedText(content as BlockListItemFeaturedText);
 }
 
 <div class="content">

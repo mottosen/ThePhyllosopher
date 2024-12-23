@@ -1,6 +1,8 @@
-@inherits UmbracoViewPage<BlockListItemFeaturedLinkSquares>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new FeaturedLinkSquares(Model);
+    var content = Model.Content;
+    var block = new FeaturedLinkSquares(content as BlockListItemFeaturedLinkSquares);
 }
 
 @if(block.Links != null)

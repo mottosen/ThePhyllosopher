@@ -1,6 +1,8 @@
-@inherits UmbracoViewPage<BlockListItemFeaturedLinkCarousel>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new FeaturedLinkCarousel(Model);
+    var content = Model.Content;
+    var block = new FeaturedLinkCarousel(content as BlockListItemFeaturedLinkCarousel);
 }
 
 @if(block.Links.Length > 0)

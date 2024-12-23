@@ -1,6 +1,8 @@
-@inherits UmbracoViewPage<BlockListItemFeaturedLink>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new FeaturedLink(Model);
+    var content = Model.Content;
+    var block = new FeaturedLink(content as BlockListItemFeaturedLink);
 }
 
 <p> TODO </p>

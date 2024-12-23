@@ -1,6 +1,8 @@
-@inherits UmbracoViewPage<BlockListItemImageBlock>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new ImageBlock(Model);
+    var content = Model.Content;
+    var block = new ImageBlock(content as BlockListItemImageBlock);
 }
 
 @if (block.Image != null)

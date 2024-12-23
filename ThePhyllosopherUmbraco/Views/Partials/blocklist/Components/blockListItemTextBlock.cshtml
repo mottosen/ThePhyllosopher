@@ -1,8 +1,13 @@
-@inherits UmbracoViewPage<BlockListTextBlock>
+@inherits UmbracoViewPage<BlockListItem>
+
 @{
-    var block = new TextBlock(Model);
+    var content = Model.Content;
+    var block = new TextBlock(content as BlockListItemTextBlock);
 }
 
-<div class="content">
-    @block.BodyText
-</div>
+@if (block.BodyText != null)
+{
+    <div class="content">
+        @block.BodyText
+    </div>
+}

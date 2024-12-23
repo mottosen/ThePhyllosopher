@@ -1,4 +1,5 @@
-﻿using Umbraco.Cms.Web.Common.PublishedModels;
+﻿using Umbraco.Cms.Core.Strings;
+using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace ThePhyllosopherUmbraco.Models.Elements
 {
@@ -11,6 +12,6 @@ namespace ThePhyllosopherUmbraco.Models.Elements
             this.node = node;
         }
 
-        public string? BodyText => node.BodyText?.ToHtmlString() ?? null;
+        public IHtmlEncodedString? BodyText => node.BodyText;
     }
 }
