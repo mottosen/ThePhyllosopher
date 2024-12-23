@@ -1,0 +1,11 @@
+@inherits UmbracoViewPage<BlockListItemImageBlock>
+@{
+    var block = new ImageBlock(Model);
+}
+
+@if (block.Image != null)
+{
+    <div class="content">
+        <img src=@block.Image.Url() class="img-fluid" alt="">
+    </div>
+}

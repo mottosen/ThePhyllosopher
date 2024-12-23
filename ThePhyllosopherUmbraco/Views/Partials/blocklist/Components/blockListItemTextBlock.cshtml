@@ -1,0 +1,8 @@
+@inherits UmbracoViewPage<BlockListTextBlock>
+@{
+    var block = new TextBlock(Model);
+}
+
+<div class="content">
+    @block.BodyText
+</div>
