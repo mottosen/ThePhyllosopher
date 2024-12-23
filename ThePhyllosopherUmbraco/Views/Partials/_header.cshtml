@@ -2,65 +2,48 @@
 
 @{
 	var home = new Home(UmbracoUtility.GetHomePage(Model));
-	var header = Model as IHeaderProperties;
 }
 
-@if (header != null)
-{
-	<header id="header" class="header d-flex align-items-center sticky-top">
-		<div class="container position-relative d-flex align-items-center justify-content-between">
-			<a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-				<h1 class="sitename">@home.Page.Name</h1>
-			</a>
+<header id="header" class="header d-flex align-items-center sticky-top">
+	<div class="container position-relative d-flex align-items-center justify-content-between">
+		<a href=@home.Page.Url() class="logo d-flex align-items-center me-auto me-xl-0">
+			<h1 class="sitename">@home.SiteName</h1>
+		</a>
 
-			<nav id="navmenu" class="navmenu">
-				<ul>
-					@foreach (var content in home.NavigationItems)
+		<nav id="navmenu" class="navmenu">
+			<ul>
+				@foreach (var content in home.NavigationItems)
+				{
+					var item = content as IHeaderProperties;
+					if (item != null)
 					{
-						var item = content as IHeaderProperties;
-						if (item != null)
+						if (content is PageBlog)
 						{
-							if (content is PageBlog)
-							{
-								var blog = new Blog(content as PageBlog);
-								<li class="dropdown">
-									<a href="#"><span>@item.PageTitle</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-									<ul>
-										@foreach (var category in blog.Categories)
-										{
-											<li><a href=@category.Page.Url()>@category.Name</a></li>
-										}
-									</ul>
-								</li>
-							}
-							else
-							{
-								<li><a href=@content.Url() class="active">@item.PageTitle</a></li>
-							}
+							var blog = new Blog(content as PageBlog);
+							<li class="dropdown"><a href="#"><span>@item.PageTitle</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+								<ul>
+									@foreach (var category in blog.Categories)
+									{
+										<li><a href=@category.Page.Url()>@category.CategoryName</a></li>
+									}
+								</ul>
+							</li>
+						}
+						else
+						{
+							<li><a href=@content.Url() class="active">@item.PageTitle</a></li>
 						}
 					}
-				</ul>
-				<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-			</nav>
+				}
+			</ul>
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		</nav>
 
-			<div class="header-social-links">
-				<a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-				<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-				<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-				<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-			</div>
-		</div>
-	</header>
-
-	<div class="page-title">
-		<div class="container d-lg-flex justify-content-between align-items-center">
-			<h1 class="mb-2 mb-lg-0">@header.PageTitle</h1>
-			<nav class="breadcrumbs">
-				<ol>
-					<li><a href="index.html">TODOTODO</a></li>
-					<li class="current">TODOTODO</li>
-				</ol>
-			</nav>
+		<div class="header-social-links">
+			<a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+			<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+			<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+			<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
 		</div>
 	</div>
-}
+</header>
