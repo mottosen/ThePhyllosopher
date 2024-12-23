@@ -478,5 +478,8 @@ umbraco-package-schema.json
 # Log files
 /umbraco/Logs/
 
+# Model files
+/umbraco/models
+
 # Media files
 /wwwroot/media/
