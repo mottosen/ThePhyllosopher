@@ -4,13 +4,13 @@ namespace ThePhyllosopherUmbraco.Models.Elements
 {
     public class FeaturedText
     {
-        BlockListItemFeaturedText node;
+        BlockListItemFeaturedText _block;
 
-        public FeaturedText(BlockListItemFeaturedText node)
+        public FeaturedText(BlockListItemFeaturedText block)
         {
-            this.node = node;
+            this._block = block;
         }
 
-        public string? Text => node.Text;
+        public string? Text => _block.Text;
     }
 }

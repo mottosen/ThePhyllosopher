@@ -5,13 +5,13 @@ namespace ThePhyllosopherUmbraco.Models.Elements
 {
     public class TextBlock
     {
-        BlockListItemTextBlock node;
+        BlockListItemTextBlock _block;
 
-        public TextBlock(BlockListItemTextBlock node)
+        public TextBlock(BlockListItemTextBlock block)
         {
-            this.node = node;
+            this._block = block;
         }
 
-        public IHtmlEncodedString? BodyText => node.BodyText;
+        public IHtmlEncodedString? BodyText => _block.BodyText;
     }
 }

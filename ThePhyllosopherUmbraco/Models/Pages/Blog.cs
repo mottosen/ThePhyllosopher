@@ -4,13 +4,13 @@ namespace ThePhyllosopherUmbraco.Models.Pages
 {
     public class Blog : PageBase
     {
-        readonly PageBlog node;
+        readonly PageBlog _node;
 
         public Blog(PageBlog node) : base(node)
 		{
-			this.node = node;
+			this._node = node;
 		}
 
-		public IEnumerable<Category> Categories => node.Children<PageCategory>()?.Select(x => new Category(x)) ?? [];
+		public IEnumerable<Category> Categories => _node.Children<PageCategory>()?.Select(x => new Category(x)) ?? [];
 	}
 }

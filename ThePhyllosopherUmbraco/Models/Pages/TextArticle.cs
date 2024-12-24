@@ -6,14 +6,14 @@ namespace ThePhyllosopherUmbraco.Models.Pages
 {
     public class TextArticle : ArticleBase
     {
-        readonly PageTextArticle node;
+        readonly PageTextArticle _node;
 
         public TextArticle(PageTextArticle node) : base(node)
         {
-            this.node = node;
+            this._node = node;
         }
 
-        public MediaWithCrops? ArticleImage => node.ArticleImage;
-        public BlockListModel? ArticleBlocks => node.ArticleBlocks;
+        public MediaWithCrops? ArticleImage => _node.ArticleImage;
+        public BlockListModel? ArticleBlocks => _node.ArticleBlocks;
     }
 }

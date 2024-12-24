@@ -5,14 +5,14 @@ namespace ThePhyllosopherUmbraco.Models.Elements
 {
     public class ImageBlock
     {
-        BlockListItemImageBlock node;
+        BlockListItemImageBlock _block;
 
-        public ImageBlock(BlockListItemImageBlock node)
+        public ImageBlock(BlockListItemImageBlock block)
         {
-            this.node = node;
+            this._block = block;
         }
 
-        public MediaWithCrops? Image => node.Image;
-        public string? Caption => string.IsNullOrWhiteSpace(node.Caption) ? null : node.Caption;
+        public MediaWithCrops? Image => _block.Image;
+        public string? Caption => string.IsNullOrWhiteSpace(_block.Caption) ? null : _block.Caption;
     }
 }

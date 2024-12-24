@@ -15,7 +15,7 @@
 				@foreach (var content in home.NavigationItems)
 				{
 					var item = content as IHeaderProperties;
-					if (item != null)
+					if (item != null && !item.HideFromNavigation)
 					{
 						if (content is PageBlog)
 						{
@@ -40,10 +40,10 @@
 		</nav>
 
 		<div class="header-social-links">
-			<a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-			<a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-			<a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-			<a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+			@foreach (var link in home.SocialLinks)
+			{
+				<a href=@link.Url class=@link.Name><i class="@($"bi bi-{link.Name}")"></i></a>
+			}
 		</div>
 	</div>
 </header>

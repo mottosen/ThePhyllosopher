@@ -1,20 +1,18 @@
-﻿using Umbraco.Cms.Core.Models;
-using Umbraco.Cms.Core.Models.Blocks;
-using Umbraco.Cms.Web.Common.PublishedModels;
+﻿using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace ThePhyllosopherUmbraco.Models.Elements
 {
     public class FeaturedLinkSquares
     {
-        BlockListItemFeaturedLinkSquares node;
+        BlockListItemFeaturedLinkSquares _block;
 
-        public FeaturedLinkSquares(BlockListItemFeaturedLinkSquares node)
+        public FeaturedLinkSquares(BlockListItemFeaturedLinkSquares block)
         {
-            this.node = node;
+            this._block = block;
         }
 
         public FeaturedLink[] Links =>
-            node.FeaturedLinks?
+            _block.FeaturedLinks?
             .Select(blockListItem => blockListItem.Content as BlockListItemFeaturedLink)
             .WhereNotNull()
             .Select(foo => new FeaturedLink(foo))

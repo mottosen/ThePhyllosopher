@@ -5,11 +5,11 @@ namespace ThePhyllosopherUmbraco.Models.Pages
 {
     public class Category : PageBase
     {
-        readonly PageCategory node;
+        readonly PageCategory _node;
 
         public Category(PageCategory node) : base(node)
         {
-            this.node = node;
+            this._node = node;
         }
 
         public string CategoryName => PageTitle;
@@ -32,5 +32,6 @@ namespace ThePhyllosopherUmbraco.Models.Pages
                     }
                 });
         public IEnumerable<ArticleBase> LatestArticles => CategoryItems.OrderByDescending(item => item.Date);
+        public IEnumerable<string> Tags => LatestArticles.SelectMany(article => article.Tags);
     }
 }

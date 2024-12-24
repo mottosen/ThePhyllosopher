@@ -1,8 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using Umbraco.Cms.Core.Models.PublishedContent;
-using Umbraco.Cms.Web.Common.PublishedModels;
-
-namespace ThePhyllosopherUmbraco.Utility
+﻿namespace ThePhyllosopherUmbraco.Utility
 {
     public enum Month
     {

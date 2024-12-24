@@ -7,20 +7,21 @@ namespace ThePhyllosopherUmbraco.Models
 {
     public class ArticleBase : PageBase
     {
-        IPublishedContent node;
+        IPublishedContent _node;
 
         public ArticleBase(IPublishedContent node) : base(node)
         {
-            this.node = node;
+            this._node = node;
         }
 
-        private IArticleProperties Article => node as IArticleProperties;
+        private IArticleProperties Article => _node as IArticleProperties;
 
         // Article Content
-        public string ArticleTitle => string.IsNullOrWhiteSpace(Article.ArticleTitle) ? node.Name : Article.ArticleTitle;
-        public DateTime Date => Article.Date == default ? node.UpdateDate : Article.Date;
+        public string ArticleTitle => string.IsNullOrWhiteSpace(Article.ArticleTitle) ? _node.Name : Article.ArticleTitle;
+        public DateTime Date => Article.Date == default ? _node.UpdateDate : Article.Date;
         public Employee Author => new Employee(Article.Author as PageEmployee);
-        public Category Category => new Category(node.Parent as PageCategory);
+        public Category Category => new Category(_node.Parent as PageCategory);
+        public IEnumerable<string> Tags => Article.Tags ?? [];
 
         // Article Card
         public string CardTitle => string.IsNullOrWhiteSpace(Article.CardTitle) ? ArticleTitle : Article.CardTitle;

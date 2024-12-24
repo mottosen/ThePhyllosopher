@@ -5,15 +5,15 @@ namespace ThePhyllosopherUmbraco.Models.Elements
 {
     public class FeaturedLink
     {
-        BlockListItemFeaturedLink node;
+        BlockListItemFeaturedLink _block;
 
-        public FeaturedLink(BlockListItemFeaturedLink node)
+        public FeaturedLink(BlockListItemFeaturedLink block)
         {
-            this.node = node;
+            this._block = block;
         }
 
-        public string LinkTitle => string.IsNullOrWhiteSpace(node.LinkTitle) ? "" : node.LinkTitle;
-        public Link? Link => node.Link;
-        public MediaWithCrops? LinkImage => node.LinkImage;
+        public string LinkTitle => string.IsNullOrWhiteSpace(_block.LinkTitle) ? "" : _block.LinkTitle;
+        public Link? Link => _block.Link;
+        public MediaWithCrops? LinkImage => _block.LinkImage;
     }
 }

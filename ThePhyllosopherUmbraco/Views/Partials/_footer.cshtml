@@ -14,12 +14,37 @@
                 <div class="footer-contact pt-3">
                     <p>@home.FooterNote</p>
                 </div>
-                <div class="social-links d-flex mt-4"> @* TODOTODO *@
-                    <a href=""><i class="bi bi-twitter-x"></i></a>
-                    <a href=""><i class="bi bi-facebook"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    <a href=""><i class="bi bi-linkedin"></i></a>
+                <div class="social-links d-flex mt-4">
+                    @foreach (var link in home.SocialLinks)
+                    {
+                        <a href=@link.Url class=@link.Name><i class="@($"bi bi-{link.Name}")"></i></a>
+                    }
                 </div>
+            </div>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Navigation</h4>
+                <ul>
+                    @foreach (var content in home.NavigationItems)
+                    {
+                        var header = content as IHeaderProperties;
+                        var footer = content as IFooterProperties;
+                        if (header != null && footer != null && !footer.HideFromFooter)
+                        {
+                            <li><a href=@content.Url()>@header.PageTitle</a></li>
+                        }
+                    }
+                </ul>
+            </div>
+
+            <div class="col-lg-2 col-md-3 footer-links">
+                <h4>Latest Articles</h4>
+                <ul>
+                    @foreach (var article in home.AllArticles)
+                    {
+                        <li><a href=@article.PageUrl>@article.CardTitle</a></li>
+                    }
+                </ul>
             </div>
 
             @foreach (var featureLinks in home.FooterLinks)

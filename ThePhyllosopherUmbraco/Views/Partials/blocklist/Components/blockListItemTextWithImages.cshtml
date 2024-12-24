@@ -4,3 +4,40 @@
     var content = Model.Content;
     var block = new TextWithImages(content as BlockListItemTextWithImages);
 }
+
+<div class="content">
+    <div class="row gy-4">
+        <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+            <h3>@block.Title</h3>
+
+            @block.Text
+        </div>
+        <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+            <div class="row gy-4">
+                @if (block.Images.Count() == 1)
+                {
+                    <div class="col-lg-12">
+                        <img src=@block.Images.ElementAt(0).Url() class="img-fluid" alt="">
+                    </div>
+                }
+                @if (block.Images.Count() >= 3)
+                {
+                    <div class="col-lg-6">
+                        <img src=@block.Images.ElementAt(0).Url() class="img-fluid" alt="">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row gy-4">
+                            <div class="col-lg-12">
+                                <img src=@block.Images.ElementAt(1).Url() class="img-fluid" alt="">
+                            </div>
+
+                            <div class="col-lg-12">
+                                <img src=@block.Images.ElementAt(2).Url() class="img-fluid" alt="">
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
