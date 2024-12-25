@@ -16,5 +16,6 @@ namespace ThePhyllosopherUmbraco.Models.Elements
         public string Title => string.IsNullOrWhiteSpace(_block.BlockTitle) ? "" : _block.BlockTitle;
         public IHtmlEncodedString? Text => _block.BlockText;
         public IEnumerable<MediaWithCrops> Images => _block.Images ?? [];
+        public bool ImagesRight => _block.ImagesRight;
     }
 }

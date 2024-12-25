@@ -10,7 +10,7 @@ namespace ThePhyllosopherUmbraco.Models.Pages
 
         public TextArticle(PageTextArticle node) : base(node)
         {
-            this._node = node;
+            _node = node;
         }
 
         public MediaWithCrops? ArticleImage => _node.ArticleImage;

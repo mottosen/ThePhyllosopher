@@ -3,11 +3,11 @@ using Umbraco.Cms.Web.Common.PublishedModels;
 
 namespace ThePhyllosopherUmbraco.Models.Elements
 {
-    public class FeaturedLink
+    public class ResearchLink
     {
-        BlockListItemFeaturedLink _block;
+        BlockListItemResearchLink _block;
 
-        public FeaturedLink(BlockListItemFeaturedLink block)
+        public ResearchLink(BlockListItemResearchLink block)
         {
             _block = block;
         }
@@ -16,5 +16,6 @@ namespace ThePhyllosopherUmbraco.Models.Elements
         public Link? Link => _block.Link;
         public MediaWithCrops? LinkImage => _block.LinkImage;
         public string LinkDescription => string.IsNullOrWhiteSpace(_block.LinkDescription) ? "" : _block.LinkDescription;
+        public string LinkType => string.IsNullOrWhiteSpace(_block.LinkType) ? "" : _block.LinkType;
     }
 }

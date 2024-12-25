@@ -8,6 +8,13 @@
 @if (block.Image != null)
 {
     <div class="content">
-        <img src=@block.Image.Url() class="img-fluid" alt="">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-8">
+                <img src=@block.Image.Url() class="img-fluid" alt="">
+                <span><small><i>@block.Caption</i></small></span>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
     </div>
 }

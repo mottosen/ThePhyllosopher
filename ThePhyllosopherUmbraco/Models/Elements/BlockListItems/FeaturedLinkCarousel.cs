@@ -2,20 +2,15 @@
 
 namespace ThePhyllosopherUmbraco.Models.Elements
 {
-    public class FeaturedLinkCarousel
+    public class FeaturedCarousel
     {
-        BlockListItemFeaturedLinkCarousel _block;
+        BlockListItemFeaturedCarousel _block;
 
-        public FeaturedLinkCarousel(BlockListItemFeaturedLinkCarousel block)
+        public FeaturedCarousel(BlockListItemFeaturedCarousel block)
         {
             this._block = block;
         }
 
-        public FeaturedLink[] Links =>
-            _block.FeaturedLinks?
-            .Select(blockListItem => blockListItem.Content as BlockListItemFeaturedLink)
-            .WhereNotNull()
-            .Select(foo => new FeaturedLink(foo))
-            .ToArray() ?? [];
+        public IEnumerable<FeaturedLink> Links => _block.FeaturedLinks?.Select(link => new FeaturedLink(link.Content as BlockListItemFeaturedLink)) ?? [];
     }
 }

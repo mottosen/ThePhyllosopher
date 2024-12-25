@@ -25,5 +25,6 @@ namespace ThePhyllosopherUmbraco.Models
 
         // Footer
         private IFooterProperties Footer => node as IFooterProperties;
+        public bool HideFromFrooter => Footer.HideFromFooter;
     }
 }

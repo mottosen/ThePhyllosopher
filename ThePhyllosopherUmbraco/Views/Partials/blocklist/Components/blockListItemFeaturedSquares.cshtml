@@ -1,0 +1,39 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var content = Model.Content;
+    var block = new FeaturedSquares(content as BlockListItemFeaturedSquares);
+}
+
+<section id="team" class="team section">
+    <div class="container section-title" data-aos="fade-up" data-aos-delay="100">
+        <div class="section-title-container d-flex align-items-center justify-content-between">
+            <h2>@block.BlockTitle</h2>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="d-flex align-items-center justify-content-between">
+                <span>@block.BlockSubtitle</span>
+            </div>
+            @foreach (ResearchLink link in block.Links)
+            {
+                <div class="col-lg-6">
+                    <div class="team-member d-flex align-items-start">
+                        @if (link.LinkImage != null)
+                        {
+                            <div class="pic"><img src=@link.LinkImage.Url() class="img-fluid" alt=""></div>
+                        }
+                        <div class="member-info">
+                            <h4>@link.LinkTitle</h4>
+                            <span>@link.LinkType</span>
+                            <p>@link.LinkDescription</p>
+                            <a href=@link.Link.Url class="readmore stretched-link"></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

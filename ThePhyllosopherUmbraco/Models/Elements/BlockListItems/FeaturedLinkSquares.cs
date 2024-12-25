@@ -2,20 +2,17 @@
 
 namespace ThePhyllosopherUmbraco.Models.Elements
 {
-    public class FeaturedLinkSquares
+    public class FeaturedSquares
     {
-        BlockListItemFeaturedLinkSquares _block;
+        BlockListItemFeaturedSquares _block;
 
-        public FeaturedLinkSquares(BlockListItemFeaturedLinkSquares block)
+        public FeaturedSquares(BlockListItemFeaturedSquares block)
         {
-            this._block = block;
+            _block = block;
         }
 
-        public FeaturedLink[] Links =>
-            _block.FeaturedLinks?
-            .Select(blockListItem => blockListItem.Content as BlockListItemFeaturedLink)
-            .WhereNotNull()
-            .Select(foo => new FeaturedLink(foo))
-            .ToArray() ?? [];
-    }
+        public string BlockSubtitle => string.IsNullOrWhiteSpace(_block.BlockSubtitle) ? "" : _block.BlockSubtitle;
+		public string BlockTitle => string.IsNullOrWhiteSpace(_block.BlockTitle) ? "" : _block.BlockTitle;
+        public IEnumerable<ResearchLink> Links => _block.FeaturedLinks?.Select(link => new ResearchLink(link.Content as BlockListItemResearchLink)) ?? [];
+	}
 }
