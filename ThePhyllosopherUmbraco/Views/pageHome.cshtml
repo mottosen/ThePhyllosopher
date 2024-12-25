@@ -1,0 +1,12 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<PageHome>
+@{
+	Layout = "master.cshtml";
+    var page = new Home(Model);
+}
+
+<main class="main">
+    <div class="container">
+        @Html.GetBlockListHtml(page.ContentBlocks)
+    </div>
+</main>

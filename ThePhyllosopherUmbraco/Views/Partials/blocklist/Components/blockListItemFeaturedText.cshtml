@@ -1,0 +1,20 @@
+@inherits UmbracoViewPage<BlockListItem>
+
+@{
+    var content = Model.Content;
+    var block = new FeaturedText(content as BlockListItemFeaturedText);
+}
+
+<div class="content">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <blockquote>
+                <p>
+                    @block.Text
+                </p>
+            </blockquote>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>

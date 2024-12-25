@@ -1,0 +1,49 @@
+﻿@inherits UmbracoViewPage
+
+@{
+	var home = new Home(UmbracoUtility.GetHomePage(Model));
+}
+
+<header id="header" class="header d-flex align-items-center sticky-top">
+	<div class="container position-relative d-flex align-items-center justify-content-between">
+		<a href=@home.Page.Url() class="logo d-flex align-items-center me-auto me-xl-0">
+			<h1 class="sitename">@home.SiteName</h1>
+		</a>
+
+		<nav id="navmenu" class="navmenu">
+			<ul>
+				@foreach (var content in home.NavigationItems)
+				{
+					var item = content as IHeaderProperties;
+					if (item != null && !item.HideFromNavigation)
+					{
+						if (content is PageBlog)
+						{
+							var blog = new Blog(content as PageBlog);
+							<li class="dropdown"><a href="#"><span>@item.PageTitle</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+								<ul>
+									@foreach (var category in blog.Categories)
+									{
+										<li><a href=@category.Page.Url()>@category.CategoryName</a></li>
+									}
+								</ul>
+							</li>
+						}
+						else
+						{
+							<li><a href=@content.Url() class="active">@item.PageTitle</a></li>
+						}
+					}
+				}
+			</ul>
+			<i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+		</nav>
+
+		<div class="header-social-links">
+			@foreach (var link in home.SocialLinks)
+			{
+				<a href=@link.Url class=@link.Name><i class="@($"fa fa-{link.Name}")"></i></a>
+			}
+		</div>
+	</div>
+</header>
