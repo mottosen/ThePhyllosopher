@@ -11,9 +11,13 @@
   "scripts": {
     "start": "eleventy --serve --port=8080",
     "build": "eleventy",
-    "clean": "find _site -mindepth 1 ! -name .gitkeep -delete"
+    "clean": "mkdir -p _site && find _site -mindepth 1 ! -name .gitkeep -delete",
+    "prebuild": "npm run clean"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^5.4.1"
   }
 }

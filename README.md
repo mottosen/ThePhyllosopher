@@ -7,6 +7,47 @@ It is a static site: markdown files in `content/` are built into plain HTML by
 [Eleventy](https://www.11ty.dev/) and published to GitHub Pages. There is no CMS,
 no database and no server to maintain.
 
+**Everything you need to write or change day to day is inside `content/`** — the
+entries themselves, and one settings file. Nothing outside that folder needs
+touching to add a post, change the welcome text, or edit the footer links.
+
+---
+
+## Site settings — `content/site.yaml`
+
+The shared text and links live in one commented file, `content/site.yaml`:
+
+| Setting | What it controls |
+|---|---|
+| `title` | Name in the top-left, the footer, and browser tabs |
+| `tagline` | The small line above the title on the home page |
+| `welcome` | The paragraph on the home page saying what the site is |
+| `footerText` | The footer blurb — leave empty to reuse `welcome` |
+| `metaDescription` | What search engines and link previews show — leave empty to reuse `welcome` |
+| `copyright` | The line at the very bottom (the year is added automatically) |
+| `nav` | The links across the top, in order |
+| `social` | The round icon links in the footer |
+
+Each footer link takes a `name`, an `icon` and a `url`:
+
+```yaml
+social:
+  - name: ORCID
+    icon: orcid
+    url: https://orcid.org/0000-0000-0000-0000
+```
+
+Available icons — `soundcloud`, `spotify`, `youtube`, `instagram`, `linkedin`,
+`github`, `orcid`, `scholar`, `bluesky`, `twitter`, `email`, `website`, `rss`.
+Anything else falls back to a generic link symbol, so a typo shows a plain icon
+rather than an empty gap. They are simple line symbols drawn in the site's own
+style rather than official brand marks, which keeps the footer coherent.
+
+`mailto:` addresses work as a `url`, but need quotes around them.
+
+If the file has a syntax error the build stops and prints the offending line,
+rather than publishing a half-broken page.
+
 ---
 
 ## Adding content
@@ -63,8 +104,8 @@ Articles page.
 ```
 
 Put the PDF itself in `content/articles/pdfs/`, and give its filename in the
-`pdf:` field. `content/articles/example-article.md` is a working template you can
-copy.
+`pdf:` field — the two must match exactly, including capitals. Copy an existing
+file in `content/articles/` as a starting point.
 
 ### Optional extras
 
@@ -131,15 +172,16 @@ DNS records at the registrar — the file alone is not enough.
 ## How it is put together
 
 ```
-content/          the markdown, one folder per section
+content/          everything the author edits
+  site.yaml       shared settings: welcome text, nav, footer links
   blogposts/
   podcasts/
   articles/
     pdfs/         article PDFs
-src/
+src/              the site itself - not needed for writing
   _layouts/       page templates - one per kind of page
   _includes/      shared fragments (header, footer, entry card, icons)
-  _data/site.json site title, navigation, social links
+  _data/site.js   reads content/site.yaml and fills in the defaults
   pages/          the home page, the three section pages, the 404 page
   assets/         stylesheet and script
   CNAME           the custom domain
@@ -147,6 +189,9 @@ devops/           Dockerfile and the nginx config used by `preview`
 misc/             the original ZenBlog theme, kept as a design reference only
 eleventy.config.js
 ```
+
+The published address comes from `src/CNAME`, and the canonical URLs in the
+page headers are derived from it, so the domain is defined in exactly one place.
 
 Each folder in `content/` has a small `*.11tydata.json` file next to the markdown.
 That is what tells Eleventy which template to use and what the URLs should look

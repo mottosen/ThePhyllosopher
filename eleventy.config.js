@@ -28,6 +28,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "content/articles/pdfs": "articles/pdfs" });
 
   eleventyConfig.addWatchTarget("src/assets/");
+  eleventyConfig.addWatchTarget("content/site.yaml");
 
   // 0.0.0.0 so the dev server is reachable from outside the container.
   eleventyConfig.setServerOptions({ host: "0.0.0.0", port: 8080 });
