@@ -25,8 +25,32 @@ The shared text and links live in one commented file, `content/site.yaml`:
 | `footerText` | The footer blurb — leave empty to reuse `welcome` |
 | `metaDescription` | What search engines and link previews show — leave empty to reuse `welcome` |
 | `copyright` | The line at the very bottom (the year is added automatically) |
-| `nav` | The links across the top, in order |
+| `homeLabel` | What the home link is called in the menu |
+| `sections` | The three section pages — see below |
 | `social` | The round icon links in the footer |
+
+### The three sections
+
+Blog, Podcasts and Articles each get a page listing everything in the matching
+folder. Their wording lives under `sections`:
+
+```yaml
+sections:
+  blog:
+    label: Blog       # what it is called in the menu at the top
+    title: Blog       # the heading on the section's own page
+    intro: Notes from the bench, the classroom, and the conference hall.
+    empty: No blog posts yet — check back soon.
+```
+
+The menu at the top is built from these, home link first, **in the order they
+appear in the file** — so moving a section up moves its menu entry up. Renaming
+one renames it everywhere it appears: the menu, the section page, the browser
+tab, and the small category line on every entry in it.
+
+`intro` and `empty` can be deleted if you do not want them. The three keys
+(`blog`, `podcasts`, `articles`) are fixed — misspelling one stops the build
+with a message saying so.
 
 Each footer link takes a `name`, an `icon` and a `url`:
 

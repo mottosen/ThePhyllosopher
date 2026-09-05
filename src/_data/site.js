@@ -12,6 +12,21 @@ import { load } from "js-yaml";
 const CONFIG = "content/site.yaml";
 const CNAME = "src/CNAME";
 
+/**
+ * Structural facts about the three sections: which folder under content/ each
+ * one lists, and the URL it lives at. These stay in code rather than in
+ * site.yaml because changing a URL breaks every existing link to it, and
+ * because adding a section also needs a content folder and its .11tydata.json.
+ * All the *wording* comes from site.yaml.
+ */
+const SECTIONS = {
+  blog: { collection: "blogposts", url: "/blog/" },
+  podcasts: { collection: "podcasts", url: "/podcasts/" },
+  articles: { collection: "articles", url: "/articles/" },
+};
+
+const titleCase = (s) => s.charAt(0).toUpperCase() + s.slice(1);
+
 /** The published domain, so canonical URLs cannot drift from the CNAME. */
 function siteUrl() {
   try {
@@ -55,13 +70,55 @@ export default function () {
   // text, so the common case needs only one paragraph written once.
   const welcome = text(data.welcome);
 
+  // Merge the authored wording onto the structural definitions above. A
+  // section missing from site.yaml still renders, using its key as the name,
+  // so a mistake there degrades rather than breaking the build.
+  const configured = data.sections ?? {};
+  const sections = {};
+  const order = Object.keys(SECTIONS).sort((a, b) => {
+    const keys = Object.keys(configured);
+    const ia = keys.indexOf(a);
+    const ib = keys.indexOf(b);
+    return (ia === -1 ? Infinity : ia) - (ib === -1 ? Infinity : ib);
+  });
+
+  for (const key of order) {
+    const authored = configured[key] ?? {};
+    sections[key] = {
+      key,
+      ...SECTIONS[key],
+      label: text(authored.label) || titleCase(key),
+      title: text(authored.title) || text(authored.label) || titleCase(key),
+      intro: text(authored.intro) || "",
+      empty: text(authored.empty) || "Nothing here just yet — check back soon.",
+    };
+  }
+
+  for (const key of Object.keys(configured)) {
+    if (!SECTIONS[key]) {
+      throw new Error(
+        `${CONFIG} has a section called "${key}", but the site only has ` +
+          `${Object.keys(SECTIONS).join(", ")}. Check the spelling.`
+      );
+    }
+  }
+
+  // The top menu is the home link followed by the sections, in the order they
+  // appear in site.yaml - so renaming a section renames its menu entry too.
+  const nav = [
+    { label: text(data.homeLabel) || "Home", url: "/" },
+    ...order.map((key) => ({ label: sections[key].label, url: sections[key].url })),
+  ];
+
   return {
     ...data,
     title: text(data.title),
     tagline: text(data.tagline),
     author: text(data.author),
     welcome,
-    nav: data.nav ?? [],
+    sections,
+    sectionList: order.map((key) => sections[key]),
+    nav,
     social: data.social ?? [],
     footerText: text(data.footerText) || welcome,
     metaDescription: text(data.metaDescription) || welcome,

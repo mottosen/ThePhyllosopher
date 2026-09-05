@@ -3,11 +3,12 @@
     `cardHeading` sets the heading level so the document outline stays
     correct wherever the card is used (defaults to h2). -#}
 {%- set h = cardHeading or "h2" %}
+{%- set s = site.sections[item.data.section] %}
 <article class="entry-card">
   {%- if rank %}<span class="entry-card__rank" aria-hidden="true">{{ rank }}</span>{% endif %}
 
   <p class="eyebrow">
-    <span>{{ item.data.category }}</span>
+    <span>{{ s.label }}</span>
     <span class="eyebrow__sep" aria-hidden="true">&bull;</span>
     <time datetime="{{ item.date | isoDate }}">{{ item.date | readableDate }}</time>
   </p>
@@ -20,7 +21,7 @@
   {%- if text %}<p class="entry-card__summary">{{ text }}</p>{% endif %}
 
   <p class="entry-card__more">
-    <span>{% if item.data.category == "Article" %}Read the abstract{% elif item.data.category == "Podcast" %}Listen{% else %}Read more{% endif %}</span>
+    <span>{% if item.data.section == "articles" %}Read the abstract{% elif item.data.section == "podcasts" %}Listen{% else %}Read more{% endif %}</span>
     {% set name = "arrow-right" %}{% include "icon.njk" %}
   </p>
 </article>

@@ -45,19 +45,42 @@ metaDescription:
 copyright: All rights reserved.
 
 
-# --- Navigation --------------------------------------------------------------
+# --- The three sections --------------------------------------------------------
 
-# The links across the top of every page, in order. Removing one hides it from
-# the menu but does not delete the pages themselves.
-nav:
-  - label: Home
-    url: /
-  - label: Blog
-    url: /blog/
-  - label: Podcasts
-    url: /podcasts/
-  - label: Articles
-    url: /articles/
+# Blog, Podcasts and Articles each get their own page listing everything in the
+# matching folder. The wording of those pages is set here.
+#
+#   label  what the section is called in the menu at the top
+#   title  the big heading on the section's own page
+#   intro  the line under that heading - delete it to show nothing
+#   empty  what the page says while the section has no entries yet
+#
+# The menu at the top is built from these, in the order they appear below, with
+# the home link first. Reordering them reorders the menu.
+
+homeLabel: Home
+
+sections:
+
+  blog:
+    label: Blog
+    title: Blog
+    intro: Notes from the bench, the classroom, and the conference hall.
+    empty: No blog posts yet — check back soon.
+
+  podcasts:
+    label: Podcasts
+    title: Podcasts
+    intro: >
+      Conversations about food sovereignty, knowledge equity and the people
+      behind the science.
+    empty: No episodes published yet — check back soon.
+
+  articles:
+    label: Articles
+    title: Articles
+    intro: Published research and other written work, free to read and download.
+    empty: No articles published yet — check back soon.
 
 
 # --- Links at the bottom of the page -----------------------------------------

@@ -1,3 +1,4 @@
+{%- set s = site.sections[section] %}
 <p class="back-link">
-  <a href="{{ categoryUrl }}">&larr; All {{ category | lower }}s</a>
+  <a href="{{ s.url }}">&larr; Back to {{ s.label }}</a>
 </p>

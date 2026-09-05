@@ -1,7 +1,6 @@
 {
   "layout": "post.njk",
   "tags": "blogpost",
-  "category": "Blog",
-  "categoryUrl": "/blog/",
+  "section": "blog",
   "permalink": "/blog/{{ page.fileSlug }}/"
 }
