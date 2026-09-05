@@ -147,7 +147,7 @@ Two ways in. Both produce the same result — use whichever is convenient.
 ### With Docker (nothing to install)
 
 ```sh
-docker compose up dev
+docker compose -f devops/docker/docker-compose.yml up dev
 ```
 
 Then open <http://localhost:8080>. Editing a file under `content/` or `src/`
@@ -156,9 +156,13 @@ reloads the browser automatically. Press Ctrl-C to stop.
 To check the site exactly as GitHub Pages will serve it:
 
 ```sh
-docker compose run --rm build     # build into ./_site
-docker compose up preview         # serve it on http://localhost:8081
+compose="-f devops/docker/docker-compose.yml"
+docker compose $compose run --rm build   # build into ./_site
+docker compose $compose up preview       # serve it on http://localhost:8081
 ```
+
+`nix develop` and direnv both set `COMPOSE_FILE`, so inside those you can drop
+the `-f` and just write `docker compose up dev`.
 
 The `preview` step is worth doing before publishing anything structural: it
 catches broken links and missing files that the dev server is lenient about.
@@ -209,8 +213,8 @@ src/              the site itself - not needed for writing
   pages/          the home page, the three section pages, the 404 page
   assets/         stylesheet and script
   CNAME           the custom domain
-devops/           Dockerfile and the nginx config used by `preview`
-misc/             the original ZenBlog theme, kept as a design reference only
+devops/
+  docker/         Dockerfile, compose file and the nginx config for `preview`
 eleventy.config.js
 ```
 
@@ -222,6 +226,6 @@ That is what tells Eleventy which template to use and what the URLs should look
 like for everything in that folder — you only touch it if you add a new section.
 
 The design takes its cues from the [ZenBlog](https://bootstrapmade.com/demo/ZenBlog/)
-theme in `misc/` — the same typefaces, palette and spacing — but the stylesheet is
-written from scratch. The built site loads no third-party CSS or JavaScript
-beyond two Google fonts.
+theme — the same typefaces, palette and spacing — but the stylesheet is written
+from scratch, so the theme itself is not part of this repo. The built site loads
+no third-party CSS or JavaScript beyond two Google fonts.

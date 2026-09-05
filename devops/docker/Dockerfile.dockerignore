@@ -1,0 +1,9 @@
+# Build context excludes. BuildKit reads this because it is named after the
+# Dockerfile beside it, which keeps the repo root free of a .dockerignore.
+.git
+.github
+.direnv
+.venv
+node_modules
+_site
+*.log

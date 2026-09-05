@@ -27,6 +27,17 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/.nojekyll": ".nojekyll" });
   eleventyConfig.addPassthroughCopy({ "content/articles/pdfs": "articles/pdfs" });
 
+  // What is not part of the site. Kept here rather than in a root
+  // .eleventyignore file so the repo root stays uncluttered.
+  for (const path of [
+    "devops/**",
+    "README.md",
+    ".venv/**",
+    "node_modules/**",
+  ]) {
+    eleventyConfig.ignores.add(path);
+  }
+
   eleventyConfig.addWatchTarget("src/assets/");
   eleventyConfig.addWatchTarget("content/site.yaml");
 

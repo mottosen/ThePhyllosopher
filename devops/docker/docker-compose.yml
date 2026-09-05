@@ -1,0 +1,49 @@
+# Two ways to work on the site:
+#   docker compose -f devops/docker/docker-compose.yml up dev
+#       live-reloading authoring server on http://localhost:8080
+#   docker compose -f devops/docker/docker-compose.yml run --rm build
+#   docker compose -f devops/docker/docker-compose.yml up preview
+#       production build, then served on http://localhost:8081 the way
+#       GitHub Pages will serve it
+#
+# Set COMPOSE_FILE to shorten those - .envrc does it for direnv users.
+#
+# Paths are relative to this file, so ../.. is the repo root. node_modules is a
+# named volume rather than part of the bind mount, so a host-built dependency
+# tree can never leak into the container or vice versa.
+
+name: thephyllosopher
+
+x-node: &node
+  build:
+    context: ../..
+    dockerfile: devops/docker/Dockerfile
+  working_dir: /app
+  volumes:
+    - ../../content:/app/content
+    - ../../src:/app/src
+    - ../../eleventy.config.js:/app/eleventy.config.js
+    - ../../_site:/app/_site
+    - node_modules:/app/node_modules
+
+services:
+  dev:
+    <<: *node
+    command: npm start
+    ports:
+      - "8080:8080"
+
+  build:
+    <<: *node
+    command: npm run build
+
+  preview:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ../../_site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+
+volumes:
+  node_modules:

@@ -32,6 +32,9 @@
           ];
 
           shellHook = ''
+            # So `docker compose up dev` works without repeating the -f path.
+            export COMPOSE_FILE=devops/docker/docker-compose.yml
+
             echo "The Phyllosopher - node $(node --version)"
             echo
             echo "  npm install            install dependencies"
@@ -39,6 +42,8 @@
             echo "  npm run build          build into ./_site"
             echo
             echo "  docker compose up dev  same dev server, no toolchain needed"
+            echo "  docker compose up preview"
+            echo "                         built site on :8081, as GitHub Pages serves it"
           '';
         };
       });

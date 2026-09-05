@@ -1,7 +1,0 @@
-# Design reference only - never built.
-misc/
-# Not site content.
-README.md
-node_modules/
-.venv/
-devops/
