@@ -1,0 +1,6 @@
+{
+  "layout": "podcast.njk",
+  "tags": "podcast",
+  "section": "podcasts",
+  "permalink": "/podcasts/{{ page.fileSlug }}/"
+}

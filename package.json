@@ -1,0 +1,23 @@
+{
+  "name": "thephyllosopher",
+  "version": "1.0.0",
+  "description": "The Phyllosopher - a blog by Bethany Mostert",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "clean": "mkdir -p _site && find _site -mindepth 1 ! -name .gitkeep -delete",
+    "prebuild": "npm run clean"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  },
+  "dependencies": {
+    "js-yaml": "^5.4.1"
+  }
+}

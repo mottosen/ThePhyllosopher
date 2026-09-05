@@ -1,0 +1,108 @@
+# =============================================================================
+# Site settings
+# =============================================================================
+# Everything in this file controls text and links that appear on every page.
+# Edit it like any other file here, save, and the site picks up the change.
+#
+# A few rules that keep the file valid:
+#   - Keep the word before each colon exactly as it is; change what follows.
+#   - Keep the indentation as it is (spaces, never tabs).
+#   - If a value contains a colon or starts with a symbol, wrap it in "quotes".
+#   - Lines starting with # are notes and are ignored.
+# =============================================================================
+
+
+# --- Name and tagline --------------------------------------------------------
+
+# Appears in the top-left of every page, in the footer, and in browser tabs.
+title: The Phyllosopher
+
+# The small line above the title on the home page.
+tagline: Plant science, and the people who do it
+
+# Who the site belongs to. Used as the default author for new entries.
+author: Bethany Mostert
+
+
+# --- The welcome text --------------------------------------------------------
+
+# Shown on the home page, under the title. This is the "what this site is"
+# paragraph. The ">" lets it run over several indented lines; blank lines
+# between them would start a new paragraph, so keep it as one block.
+welcome: >
+  Writing, podcasts and published work from Bethany Mostert on plant
+  biochemistry, inclusive science, and the knowledge we share along the way.
+
+# The short blurb in the footer. Leave it empty to reuse the welcome text
+# above; fill it in if you want the footer to say something different.
+footerText:
+
+# The one-line summary search engines and link previews show. Leave it empty
+# to reuse the welcome text. Aim for under about 160 characters if you set it.
+metaDescription:
+
+# The line at the very bottom of every page. The year is added automatically.
+copyright: All rights reserved.
+
+
+# --- The three sections --------------------------------------------------------
+
+# Blog, Podcasts and Articles each get their own page listing everything in the
+# matching folder. The wording of those pages is set here.
+#
+#   label  what the section is called in the menu at the top
+#   title  the big heading on the section's own page
+#   intro  the line under that heading - delete it to show nothing
+#   empty  what the page says while the section has no entries yet
+#
+# The menu at the top is built from these, in the order they appear below, with
+# the home link first. Reordering them reorders the menu.
+
+homeLabel: Home
+
+sections:
+
+  blog:
+    label: Blog
+    title: Blog
+    intro: Notes from the bench, the classroom, and the conference hall.
+    empty: No blog posts yet — check back soon.
+
+  podcasts:
+    label: Podcasts
+    title: Podcasts
+    intro: >
+      Conversations about food sovereignty, knowledge equity and the people
+      behind the science.
+    empty: No episodes published yet — check back soon.
+
+  articles:
+    label: Articles
+    title: Articles
+    intro: Published research and other written work, free to read and download.
+    empty: No articles published yet — check back soon.
+
+
+# --- Links at the bottom of the page -----------------------------------------
+
+# The round icon links in the footer. Add, remove or reorder them freely.
+#
+#   name  what a screen reader announces, and the tooltip on hover
+#   icon  which symbol to draw - see the list below
+#   url   where it goes ("mailto:you@example.com" works for email)
+#
+# Available icons:
+#   soundcloud   spotify     youtube     instagram   linkedin
+#   github       orcid       scholar     bluesky     twitter
+#   email        website     rss
+#
+# Any name not on that list falls back to a generic link symbol.
+
+social:
+  - name: ORCID
+    icon: orcid
+    url: https://orcid.org/0009-0004-1663-5243
+
+  - name: SoundCloud
+    icon: soundcloud
+    url: https://soundcloud.com/bethany-mostert

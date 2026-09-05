@@ -1,0 +1,26 @@
+---
+layout: base.njk
+---
+{#- A section's list page. All the wording comes from `sections` in
+    content/site.yaml; the page itself only names which section it is. -#}
+{%- set s = site.sections[section] %}
+
+<div class="page-head">
+  <div class="wrap">
+    <h1>{{ s.title }}</h1>
+    {%- if s.intro %}<p class="page-head__intro">{{ s.intro }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="wrap section">
+  {%- set entries = collections[s.collection] %}
+  {%- if entries.length %}
+  <div class="entry-list">
+    {%- for item in entries %}
+      {% include "entry-card.njk" %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty-state">{{ s.empty }}</p>
+  {%- endif %}
+</div>

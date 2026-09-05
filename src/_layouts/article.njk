@@ -1,0 +1,27 @@
+---
+layout: base.njk
+---
+{% include "entry-head.njk" %}
+
+<div class="wrap section">
+  <article class="entry">
+    {%- if venue %}<p class="entry__venue">{{ venue }}</p>{% endif %}
+
+    {%- if content | trim %}
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+    {%- endif %}
+
+    {%- if pdf %}
+    <p class="download">
+      <a class="button" href="/articles/pdfs/{{ pdf }}" download>
+        {% set name = "download" %}{% include "icon.njk" %}
+        <span>Download the PDF</span>
+      </a>
+    </p>
+    {%- endif %}
+  </article>
+
+  {% include "entry-foot.njk" %}
+</div>

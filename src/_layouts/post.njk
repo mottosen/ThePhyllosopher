@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+{% include "entry-head.njk" %}
+
+<div class="wrap section">
+  <article class="entry">
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+  </article>
+
+  {% include "entry-foot.njk" %}
+</div>

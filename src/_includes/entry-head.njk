@@ -1,0 +1,19 @@
+{#- Title block shared by all three entry layouts. The section's name and URL
+    come from content/site.yaml, so renaming a section renames it here too. -#}
+{%- set s = site.sections[section] %}
+<div class="page-head page-head--entry">
+  <div class="wrap">
+    <p class="eyebrow">
+      <a href="{{ s.url }}">{{ s.label }}</a>
+      <span class="eyebrow__sep" aria-hidden="true">&bull;</span>
+      <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time>
+    </p>
+    <h1>{{ title }}</h1>
+    {%- if author %}
+    <p class="byline">
+      {% set name = "person" %}{% include "icon.njk" %}
+      <span>{{ author }}</span>
+    </p>
+    {%- endif %}
+  </div>
+</div>
