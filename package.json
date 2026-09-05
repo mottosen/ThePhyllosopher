@@ -11,7 +11,7 @@
   "scripts": {
     "start": "eleventy --serve --port=8080",
     "build": "eleventy",
-    "clean": "rm -rf _site"
+    "clean": "find _site -mindepth 1 ! -name .gitkeep -delete"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"
