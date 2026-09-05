@@ -76,25 +76,10 @@ nav:
 # Any name not on that list falls back to a generic link symbol.
 
 social:
+  - name: ORCID
+    icon: orcid
+    url: https://orcid.org/0009-0004-1663-5243
+
   - name: SoundCloud
     icon: soundcloud
     url: https://soundcloud.com/bethany-mostert
-
-  # Delete the leading "# " from the lines below to switch these on, and put
-  # your own addresses in.
-  #
-  # - name: Email
-  #   icon: email
-  #   url: "mailto:hello@thephyllosopher.com"
-  #
-  # - name: ORCID
-  #   icon: orcid
-  #   url: https://orcid.org/0000-0000-0000-0000
-  #
-  # - name: Google Scholar
-  #   icon: scholar
-  #   url: https://scholar.google.com/citations?user=XXXXXXX
-  #
-  # - name: Bluesky
-  #   icon: bluesky
-  #   url: https://bsky.app/profile/yourname.bsky.social
