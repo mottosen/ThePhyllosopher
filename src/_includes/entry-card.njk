@@ -1,0 +1,26 @@
+{#- One card for any entry, in any of the three categories.
+    Expects `item`. Optional: `rank` renders the oversized ghost numeral,
+    `cardHeading` sets the heading level so the document outline stays
+    correct wherever the card is used (defaults to h2). -#}
+{%- set h = cardHeading or "h2" %}
+<article class="entry-card">
+  {%- if rank %}<span class="entry-card__rank" aria-hidden="true">{{ rank }}</span>{% endif %}
+
+  <p class="eyebrow">
+    <span>{{ item.data.category }}</span>
+    <span class="eyebrow__sep" aria-hidden="true">&bull;</span>
+    <time datetime="{{ item.date | isoDate }}">{{ item.date | readableDate }}</time>
+  </p>
+
+  <{{ h }} class="entry-card__title">
+    <a href="{{ item.url }}">{{ item.data.title }}</a>
+  </{{ h }}>
+
+  {%- set text = item | summary %}
+  {%- if text %}<p class="entry-card__summary">{{ text }}</p>{% endif %}
+
+  <p class="entry-card__more">
+    <span>{% if item.data.category == "Article" %}Read the abstract{% elif item.data.category == "Podcast" %}Listen{% else %}Read more{% endif %}</span>
+    {% set name = "arrow-right" %}{% include "icon.njk" %}
+  </p>
+</article>

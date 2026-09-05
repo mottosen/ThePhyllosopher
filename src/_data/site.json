@@ -1,0 +1,17 @@
+{
+  "title": "The Phyllosopher",
+  "tagline": "Plant science, and the people who do it",
+  "description": "Writing, podcasts and published work from Bethany Mostert on plant biochemistry, inclusive science, and the knowledge we share along the way.",
+  "url": "https://thephyllosopher.com",
+  "author": "Bethany Mostert",
+  "lang": "en",
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Blog", "url": "/blog/" },
+    { "label": "Podcasts", "url": "/podcasts/" },
+    { "label": "Articles", "url": "/articles/" }
+  ],
+  "social": [
+    { "name": "SoundCloud", "icon": "soundcloud", "url": "https://soundcloud.com/bethany-mostert" }
+  ]
+}

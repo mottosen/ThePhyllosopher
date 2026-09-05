@@ -1,0 +1,22 @@
+---
+layout: base.njk
+---
+<div class="page-head">
+  <div class="wrap">
+    <h1>{{ title }}</h1>
+    {%- if intro %}<p class="page-head__intro">{{ intro }}</p>{% endif %}
+  </div>
+</div>
+
+<div class="wrap section">
+  {%- set entries = collections[collectionName] %}
+  {%- if entries.length %}
+  <div class="entry-list">
+    {%- for item in entries %}
+      {% include "entry-card.njk" %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty-state">{{ emptyMessage or "Nothing here just yet — check back soon." }}</p>
+  {%- endif %}
+</div>

@@ -1,0 +1,7 @@
+{
+  "layout": "article.njk",
+  "tags": "article",
+  "category": "Article",
+  "categoryUrl": "/articles/",
+  "permalink": "/articles/{{ page.fileSlug }}/"
+}

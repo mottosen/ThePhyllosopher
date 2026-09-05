@@ -1,0 +1,18 @@
+# Build output. The directory itself is kept so that Docker does not
+# create it as root on a fresh clone.
+_site/*
+!_site/.gitkeep
+
+# Node
+node_modules/
+
+# Nix / direnv
+.direnv/
+result
+
+# Python leftovers
+.venv/
+
+# Editor / OS
+.DS_Store
+*.swp

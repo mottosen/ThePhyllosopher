@@ -1,0 +1,36 @@
+---
+layout: base.njk
+permalink: /
+eleventyExcludeFromCollections: true
+---
+<div class="hero">
+  <div class="wrap">
+    <p class="eyebrow">{{ site.tagline }}</p>
+    <h1>{{ site.title }}</h1>
+    <p class="hero__lede">{{ site.description }}</p>
+  </div>
+</div>
+
+<div class="wrap section">
+  <div class="section-title">
+    <h2>Latest</h2>
+  </div>
+
+  {%- set latest = [] %}
+  {%- for name in ["blogposts", "podcasts", "articles"] %}
+    {%- if collections[name].length %}
+      {%- set latest = (latest.push(collections[name][0]), latest) %}
+    {%- endif %}
+  {%- endfor %}
+
+  {%- if latest.length %}
+  <div class="entry-list entry-list--featured">
+    {%- for item in latest %}
+      {% set rank = loop.index %}{% set cardHeading = "h3" %}
+      {% include "entry-card.njk" %}
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <p class="empty-state">Nothing published yet — check back soon.</p>
+  {%- endif %}
+</div>

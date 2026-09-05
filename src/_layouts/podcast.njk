@@ -1,0 +1,30 @@
+---
+layout: base.njk
+---
+{% include "entry-head.njk" %}
+
+<div class="wrap section">
+  <article class="entry">
+    {%- if soundcloud %}
+    <div class="player">
+      <iframe title="Listen to &ldquo;{{ title }}&rdquo; on SoundCloud"
+              src="{{ soundcloud }}"
+              width="100%" height="400" scrolling="no" allow="autoplay"
+              loading="lazy"></iframe>
+    </div>
+    {%- else %}
+    <p class="notice">
+      {% set name = "headphones" %}{% include "icon.njk" %}
+      This episode has not been published yet.
+    </p>
+    {%- endif %}
+
+    {%- if content | trim %}
+    <div class="prose">
+      {{ content | safe }}
+    </div>
+    {%- endif %}
+  </article>
+
+  {% include "entry-foot.njk" %}
+</div>

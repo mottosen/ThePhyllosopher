@@ -1,0 +1,33 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="site-footer__about">
+      <span class="sitename">{{ site.title }}</span>
+      <p>{{ site.description }}</p>
+      {%- if site.social.length %}
+      <ul class="social-links">
+        {%- for link in site.social %}
+        <li>
+          <a href="{{ link.url }}" rel="me noopener" target="_blank">
+            {% set name = link.icon %}{% include "icon.njk" %}
+            <span class="visually-hidden">{{ link.name }}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+      {%- endif %}
+    </div>
+
+    <nav class="site-footer__nav" aria-label="Footer">
+      <h2>Navigation</h2>
+      <ul>
+        {%- for item in site.nav %}
+        <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+        {%- endfor %}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="wrap site-footer__legal">
+    <p>&copy; {{ site.title }}. All rights reserved.</p>
+  </div>
+</footer>
